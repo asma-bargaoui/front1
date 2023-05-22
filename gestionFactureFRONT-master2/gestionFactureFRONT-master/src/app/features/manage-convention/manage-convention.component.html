@@ -1,0 +1,153 @@
+<!-- <br>
+<div style="display: flex; justify-content: flex-start; flex-direction: row; margin-top: 2rem">
+  <span class="p-input-icon-left" style="margin-left: 3rem; margin-right: 1.5rem">
+    <i class="pi pi-search"></i>
+    <input type="text" pInputText placeholder="Search">
+  </span>
+  <button mat-raised-button class="addBtnColor" (click)="oopenDialog()" >+ Add new Convention</button>
+</div>
+<div class="container">
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-3">Convention Id</div>
+        <div class="col col-3">Structure</div>
+        <div class="col col-3">Application</div>
+        <div class="col col-3">Nbr-reel</div>
+        <div class="col col-3">Nbr-min</div>
+        <div class="col col-3">Nbr-max</div>
+        <div class="col col-3">Date de signature</div>
+        <div class="col col-3">Duré de la convention</div>
+        <div class="col col-3">Amount total</div>
+        <div class="col col-3">Date écheance</div>
+
+
+      </li>
+      <li class="table-row" *ngFor="let conv of conventionList">
+        <div class="col col-3" data-label="Job Id">{{conv.id}}</div>
+        <div class="col col-3">{{conv.structCode}}</div>
+        <div class="col col-3">{{conv.appCode}}</div>
+        <div class="col col-3">{{conv.nbr_reel}}</div>
+        <div class="col col-3">{{conv.nbr_Min}}</div>
+        <div class="col col-3">{{conv.nbr_Max}}</div>
+        <div class="col col-3">{{conv.dateSignature}}</div>
+        <div class="col col-3">{{conv.conventionDuration}}</div>
+        <div class="col col-3">{{conv.totalAmount}}</div>
+        <div class="col col-3">{{conv.dueDate}}</div>
+      </li>
+    </ul>
+  </div>
+
+  <p-dialog header="New Convention" [(visible)]="visible"  [modal]="true" [style]="{width: '40vw', height: '75vh'}" [baseZIndex]="10000"
+            [draggable]="false" [resizable]="false">
+    <form [formGroup]="conventionForm" >
+      <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div style="display: flex; flex-direction: row; justify-content: center;">
+          <div style="display: flex; flex-direction: column;align-items: center; padding-right: 1rem;">
+            <label class="labelMarge">Code d'application</label>
+            <input formControlName="application" style="" type="text" pInputText>
+          </div><br>
+          <div style="display: flex; flex-direction: column;align-items: center; padding-left: 1rem;">
+            <label class="labelMarge">Code du structure</label>
+            <input formControlName="structure"  type="text" pInputText>
+          </div>
+        </div>
+        <br>
+        <div style="display: flex; flex-direction: row; justify-content: center;">
+          <div style="display: flex; flex-direction: column;align-items: center">
+            <label class="labelMarge">Nbr_reel</label>
+            <input formControlName="nbr_reel" type="number" pInputText>
+          </div><br>
+          <div style="display: flex; flex-direction: column;align-items: center; padding-right: 1rem;; padding-left: 1rem;">
+            <label class="labelMarge">Nbr_Min</label>
+            <input formControlName="nbr_Min" type="number" pInputText>
+          </div>
+          <div style="display: flex; flex-direction: column;align-items: center">
+            <label class="labelMarge">Nbr_Max</label>
+            <input formControlName="nbr_Max" type="number" pInputText>
+          </div>
+        </div>
+        <br>
+        <div style="display: flex; flex-direction: row; justify-content: center;">
+          <div style="display: flex; flex-direction: column;align-items: center;">
+            <label class="labelMarge">Date de signature</label>
+            <p-calendar formControlName="dateSignature" ></p-calendar>
+          </div><br>
+          <div style="display: flex; flex-direction: column;align-items: center; padding-left: 1rem;">
+            <label class="labelMarge">Durée du convention</label>
+            <input formControlName="conventionDuration" type="number" pInputText>
+          </div>
+        </div>
+        
+        
+      </div>
+      <br>
+      
+      <br>
+      
+  
+    </form>
+    <ng-template pTemplate="footer">
+      <button pButton icon="pi pi-times"  class="p-button-danger" label="Cancel"></button>
+      <button pButton (click)="submitConvention()" icon="pi pi-check"  label="Submit" ></button>
+    </ng-template>
+  </p-dialog> -->
+
+
+  <br><br>
+  <div style="display: flex; justify-content: flex-start;">
+    <h2>create new convention</h2>
+  
+  </div>
+  
+    <form [formGroup]="conventionForm" >
+  
+      <div style="display: flex; flex-direction: row; justify-content: flex-start;">
+        <div style="display: flex; flex-direction: column;align-items: center; ">
+          <label class="labelMarge">Code d'application</label>
+          <input formControlName="application" styl="" type="text" pInputText>
+        </div>
+        
+  
+        <div style="display: flex; flex-direction: column;align-items: center">
+          <label class="labelMarge">Code du structure</label>
+          <input formControlName="structure"  type="text" pInputText>
+        </div>
+  
+        <div style="display: flex; flex-direction: column;align-items: center; padding-left: 1rem;">
+          <label class="labelMarge">Durée du convention</label>
+          <input formControlName="conventionDuration" type="number" pInputText>
+        </div>
+      </div>
+          
+      <div style="display: flex; flex-direction: row; justify-content: flex-start;">
+        <div style="display: flex; flex-direction: column;align-items: center">
+          <label class="labelMarge">Nbr_reel</label>
+          <input formControlName="nbr_reel" type="number" pInputText>
+        </div>
+        
+        <div style="display: flex; flex-direction: column;align-items: center;">
+          <label class="labelMarge">Nbr_Min</label>
+          <input formControlName="nbr_Min" type="number" pInputText>
+        </div>
+  
+        <div style="display: flex; flex-direction: column;align-items: center">
+          <label class="labelMarge">Nbr_Max</label>
+          <input formControlName="nbr_Max" type="number" pInputText>
+        </div>
+      </div>
+          
+      <div style="display: flex; justify-content: flex-start;">
+        <div style="display: flex; flex-direction: column;align-items: center;">
+          <label class="labelMarge">Date de signature</label>
+          <p-calendar styl="margin: 1.3rem;" formControlName="dateSignature" ></p-calendar>
+        </div>
+  
+        <div style="display: flex; flex-direction: column;align-items: center;">
+          <label class="labelMarge">Date d'écheance</label>
+          <p-calendar styl="margin: 1.3rem;" formControlName="dueDate" ></p-calendar>
+        </div>
+      </div>
+    
+    </form>
+  
+    <button style="margin-left: 1.3rem;" pButton (click)="submitConvention()" icon="pi pi-check"  label="Submit" ></button>

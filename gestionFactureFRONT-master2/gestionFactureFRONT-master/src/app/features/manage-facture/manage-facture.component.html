@@ -1,0 +1,90 @@
+<br><br>
+<div style="display: flex; justify-content: flex-start; flex-direction: row; margin-top: 2rem">
+  <span class="p-input-icon-left" style="margin-left: 3.4rem; margin-right: 1.5rem">
+    <i class="pi pi-search"></i>
+    <input type="text" pInputText placeholder="Search">
+  </span>
+</div>
+
+<br><br>
+
+<div class="container">
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1" >ID</div>
+      <div class="col col-3" style="text-align: center;">Convention</div>
+      <div class="col col-3" style="text-align: center;">Structure</div>
+      <div class="col col-3" style="text-align: center;">dueDatefct</div>
+      <div class="col col-3" style="text-align: center;">Amount</div>
+      <div class="col col-3" style="text-align: center;">Period</div>
+      <div class="col col-3" style="text-align: center;">Status <b>(PAIED/ PENDING)</b></div>
+      
+    </li>
+    <p-scrollPanel class="paddingg" [style]="{ width: '102%', height: '100vh' }">
+      <li class="table-row" *ngFor="let fact of allFacture">
+        <div class="col col-1" data-label="Job Id">{{fact.id}}</div>
+        <div class="col col-3" style="text-align: center;">{{fact.convention}}</div>
+        <div class="col col-3" style="text-align: center;">{{fact.structure}}</div>
+        <div class="col col-3" style="text-align: center;">{{fact.dueDatefct}}</div>
+        <div class="col col-3" style="text-align: center;">{{fact.amount}}</div>
+        <div class="col col-3" style="text-align: center;">{{fact.period}}</div>
+  
+        <div class="col col-3" style="text-align: center;">
+          <i *ngIf="fact.status != 'PENDING'" class="pi pi-check" style="font-size: 1.5rem; color: rgb(65, 170, 65);"></i>
+          <i *ngIf="fact.status == 'PENDING'" class="pi pi-times" style="font-size: 1.5rem; color: rgb(175, 56, 56);"></i>
+          <i (click)="paid(fact.id)" *ngIf="fact.status == 'PENDING'" class="pi pi-money-bill" style="font-size: 1.5rem; color: rgb(56, 58, 175); margin-left: 2rem;"></i>
+          
+        </div>
+        <!-- <div class="col col-2" style="text-align: center;margin-top: -1rem;" >
+          <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger " style="font-size: 12rem;  margin-top: .7rem;"></button>
+        </div>
+        <div class="col col-2" style="text-align: center;margin-top: -1rem;" > 
+               <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-warning " style="font-size: 12rem;  margin-top: .7rem;"></button>
+        </div> -->
+      </li>
+
+    </p-scrollPanel>
+    
+    
+  </ul>
+</div>
+<p-dialog [(visible)]="visible" header="NEW Facture"  [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+  <div><br>
+    <div>
+      <div style="display: flex; justify-content: space-around; flex-direction: row">
+        <p-selectButton optionLabel="label" optionValue="value"></p-selectButton>
+      </div>
+    </div>
+    <form >
+      <div style="display: flex; flex-direction: column; color: #065878"><br>
+        <div style="display: flex; flex-direction: column; justify-content: space-between">
+
+          <div style="display: flex; flex-direction: column; justify-content: flex-start">
+            <label><b>Code</b></label><br>
+            <input type="text" pInputText style="border-radius: 15px">
+          </div>
+          <br>
+          <div style="display: flex; flex-direction: column; justify-content: flex-start">
+            <label><b>Libellé</b></label><br>
+            <input  type="text" pInputText style="border-radius: 15px">
+          </div>
+          <br>
+          <div style="display: flex; flex-direction: column; justify-content: flex-start">
+            <label><b>Prix unitaire</b></label><br>
+            <input  type="text" pInputText style="border-radius: 15px">
+          </div>
+          
+          <br>
+         
+        </div>
+        <br>
+      </div>
+    </form>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button (click)="visible = false" pButton pRipple type="button" icon="pi pi-times" label="Cancel" class="p-button-danger"></button>
+    <p-button  icon="pi pi-check" label="Submit" class="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

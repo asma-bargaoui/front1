@@ -1,0 +1,138 @@
+<br><br>
+<div style="display: flex; justify-content: flex-start; flex-direction: row; margin-top: 2rem">
+  <button mat-raised-button class="addBtnColor" (click)="openDialog()" > + ajouter utilisateurs</button>
+</div>
+
+<cdk-virtual-scroll-viewport appendOnly itemSize="50" class="example-viewport">
+
+<div style="display: flex; justify-content: flex-start; flex-direction: column; margin-bottom: 100px">
+
+  <div class="candidateList" *ngFor="let user of allUsers">
+    <div style="display: flex; flex-direction: row; justify-content: flex-start">
+      <mat-list>
+        <mat-list-item style="height: 5rem;">
+          <div style="display: flex; flex-direction: row; justify-content: space-between">
+            <div class="circle">
+              <span class="initials">{{user.username| twoFirstLetters}}</span>
+            </div>
+            <div style="margin-left: 1rem; margin-top: 1.3rem">
+              <div mat-line >{{user.username| titlecase}}</div>
+            </div>
+          </div>
+        </mat-list-item>
+      </mat-list>
+      <p class="marginItemsListe">{{user.email}}</p>
+      <button (click)="openDeleteDialog(user.username)" pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger marginItemsListe" style="font-size: 12rem; margin-top: 1.2rem;"></button>
+      <button (click)="openUpdateDialog(user)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-warning marginItemsListe" style="font-size: 12rem; margin-top: 1.2rem;"></button>
+
+    </div>
+  </div>
+
+</div>
+</cdk-virtual-scroll-viewport>
+<p-dialog header="NEW USER" [(visible)]="visible" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+  <div><br>
+    <div>
+      <div style="display: flex; justify-content: space-around; flex-direction: row">
+        <p-selectButton optionLabel="label" optionValue="value"></p-selectButton>
+      </div>
+    </div>
+    <form [formGroup]="userForm">
+      <div style="display: flex; flex-direction: column; color: #065878"><br>
+        <div style="display: flex; flex-direction: column; justify-content: space-between">
+
+          <div style="display: flex; flex-direction: column; justify-content: flex-start">
+            <label><b>nom utilisateur</b></label><br>
+            <input formControlName="username" type="text" pInputText style="border-radius: 15px">
+          </div>
+          <div class="error-message" *ngIf="userForm.get('username')?.errors?.['required'] && userForm.get('username')?.touched">
+            <i class="fa fa-exclamation-circle"></i>
+            Ce champ doit être rempli
+          </div>
+          
+          <br>
+          
+          <div style="display: flex; flex-direction: column; justify-content: flex-start">
+            <label><b>Email</b></label><br>
+            <input formControlName="email" type="text" pInputText style="border-radius: 15px">
+          </div>
+          <br>
+          
+          
+          <br>
+          <div style="display: flex; flex-direction: column; justify-content: flex-start">
+            <label><b>Password</b></label><br>
+            <input formControlName="password" type="password" pPassword style="border-radius: 15px">
+          </div>
+        </div>
+        <br>
+      </div>
+    </form>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button (click)="visible = false" pButton pRipple type="button" icon="pi pi-times" label="Cancel" class="p-button-danger"></button>
+    <p-button (click)="submitUser()" icon="pi pi-check" label="Submit" class="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog header="UPDATE USER" [(visible)]="update" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+  <div><br>
+    <div>
+      <div style="display: flex; justify-content: space-around; flex-direction: row">
+        <p-selectButton optionLabel="label" optionValue="value"></p-selectButton>
+      </div>
+    </div>
+    <form [formGroup]="userUpdateForm">
+      <div style="display: flex; flex-direction: column; color: #065878"><br>
+        <div style="display: flex; flex-direction: column; justify-content: space-between">
+
+          <div style="display: flex; flex-direction: column; justify-content: flex-start">
+            <label><b>nom de l'utilisateur</b></label><br>
+            <input formControlName="username" type="text" pInputText style="border-radius: 15px" readonly>
+          </div>
+          <br>
+          
+          <div style="display: flex; flex-direction: column; justify-content: flex-start">
+            <label><b>Email</b></label><br>
+            <input formControlName="email" type="text" pInputText style="border-radius: 15px">
+          </div>
+          <br>
+          <div style="display: flex; flex-direction: column; justify-content: flex-start">
+            <label><b>Role</b></label><br>
+            <p-dropdown [options]="roles" formControlName="role" optionLabel="name"></p-dropdown>
+          </div>
+          
+          <br>
+          <div style="display: flex; flex-direction: column; justify-content: flex-start">
+            <label><b>Password</b></label><br>
+            <input formControlName="password" type="password" pPassword style="border-radius: 15px">
+          </div>
+        </div>
+        <br>
+      </div>
+    </form>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button (click)="update = false" pButton pRipple type="button" icon="pi pi-times" label="Cancel" class="p-button-danger"></button>
+    <p-button (click)="updateUser()" icon="pi pi-check" label="Submit" class="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
+
+
+<p-dialog [(visible)]="delete" header="Confirm Delete" [style]="{width: '40vw', height: '30vh'}">
+  <div> vous les vous vraiment supprimer cette utilisateurs</div>
+  <ng-template pTemplate="footer">
+    <button pButton  class="p-button-danger" label="annuler"></button>
+    <button (click) = "deleteUser()" pButton label="supprimer" ></button>
+  </ng-template>
+</p-dialog>
+
+
+
+
+
+  

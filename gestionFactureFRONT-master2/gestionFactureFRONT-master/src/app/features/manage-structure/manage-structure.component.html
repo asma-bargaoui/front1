@@ -1,0 +1,104 @@
+<br><br>
+<div style="display: flex; justify-content: flex-start; flex-direction: row; margin-top: 2rem">
+  <span class="p-input-icon-left" style="margin-left: 1.5rem; margin-right: 1.5rem">
+    <i class="pi pi-search"></i>
+    <input type="text" pInputText placeholder="Search">
+  </span>
+  <button mat-raised-button class="addBtnColor" (click)="openDialog()" >+ Add new Structure</button>
+</div>
+<div class="container">
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1" >Code structure</div>
+      <div class="col col-2" style="text-align: center;">Libellé structure</div>
+      <div class="col col-3" >Ministére</div>
+      <div class="col col-2" style="text-align: center; margin-top: -1rem;">
+      </div>
+      <div class="col col-2" style="text-align: center; margin-top: -1rem;">
+      </div>
+
+    </li>
+    <li class="table-row" *ngFor="let st of structureList">
+      <div class="col col-1" data-label="Job Id">{{st.code}}</div>
+      <div class="col col-2" style="text-align: center;" data-label="Customer Name">{{st.libelle}}</div>
+      <div class="col col-3" style="text-align: center;" data-label="Amount">{{st.ministere.libelle}}</div>
+      
+      <div class="col col-2" style="text-align: center;margin-top: -1rem;" data-label="Payment Status">
+        <button (click)="opendeleteDialog(st.id)" pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger " style="font-size: 12rem;  margin-top: .7rem;"></button>
+      </div>
+      <div class="col col-2" style="text-align: center;margin-top: -1rem;" data-label="Payment Status"> 
+             <button (click)="openUpdateDialog(st)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-warning " style="font-size: 12rem;  margin-top: .7rem;"></button>
+      </div>
+    </li>
+    
+  </ul>
+</div>
+<p-dialog header="Nouvelle Structure" [(visible)]="visible"  [modal]="true" [style]="{width: '40vw', height: '75vh'}" [baseZIndex]="10000"
+            [draggable]="false" [resizable]="false">
+    <form [formGroup]="structureForm" >
+      <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div style="display: flex; flex-direction: column;align-items: center;">
+          <label class="labelMarge">Code du structure</label>
+          <input formControlName="code" style="width: 22rem;" type="text" pInputText>
+        </div><br>
+        <div style="display: flex; flex-direction: column;align-items: center;">
+            <label class="labelMarge">Libellé du structure</label>
+            <input formControlName="libelle" style="width: 22rem;" type="text" pInputText>
+        </div><br>
+        
+        <div style="display: flex; flex-direction: column;align-items: center;">
+            <label class="labelMarge">Ministere</label>
+            <p-dropdown formControlName="ministere" [options]="ministereList" optionLabel="libelle" ></p-dropdown>
+        </div>
+      </div>
+      <br>
+      
+      <br>
+      
+  
+    </form>
+    <ng-template pTemplate="footer">
+      <button pButton icon="pi pi-times"  class="p-button-danger" label="Cancel"></button>
+      <button (click)="submitStructure()" pButton icon="pi pi-check"  label="Submit" ></button>
+    </ng-template>
+  </p-dialog>
+
+
+  <p-dialog header="Update Structure" [(visible)]="update"  [modal]="true" [style]="{width: '40vw', height: '75vh'}" [baseZIndex]="10000"
+            [draggable]="false" [resizable]="false">
+    <form [formGroup]="structureUpdateForm" >
+      <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div style="display: flex; flex-direction: column;align-items: center;">
+          <label class="labelMarge">Code du structure</label>
+          <input formControlName="code" style="width: 22rem;" type="text" pInputText>
+        </div><br>
+        <div style="display: flex; flex-direction: column;align-items: center;">
+            <label class="labelMarge">Libellé du structure</label>
+            <input formControlName="libelle" style="width: 22rem;" type="text" pInputText>
+        </div><br>
+        
+        <div style="display: flex; flex-direction: column;align-items: center;">
+            <label class="labelMarge">Ministere</label>
+            <p-dropdown formControlName="ministere" [options]="ministereList" optionLabel="libelle" ></p-dropdown>
+        </div>
+      </div>
+      <br>
+      
+      <br>
+      
+  
+    </form>
+    <ng-template pTemplate="footer">
+      <button pButton icon="pi pi-times"  class="p-button-danger" label="Cancel"></button>
+      <button (click)="updateStructure()" pButton icon="pi pi-check"  label="Submit" ></button>
+    </ng-template>
+  </p-dialog>
+
+
+  <p-dialog [(visible)]="delete" header="Confirm Delete" [style]="{width: '40vw', height: '30vh'}">
+    <div> are you sure you want to delete this structure !?</div>
+    <ng-template pTemplate="footer">
+      <button pButton  class="p-button-danger" label="Cancel"></button>
+      <button (click) = "deleteStructure()" pButton label="delete" ></button>
+    </ng-template>
+  </p-dialog>

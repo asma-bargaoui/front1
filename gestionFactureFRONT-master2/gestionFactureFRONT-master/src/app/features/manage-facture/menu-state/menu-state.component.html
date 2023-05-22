@@ -1,0 +1,16 @@
+<div class="customShape" [ngStyle]="{'background-color':'red'}" [matMenuTriggerFor]="menu"><mat-icon style="color: white">keyboard_arrow_down</mat-icon></div>
+
+<mat-menu #menu="matMenu">
+
+  <button mat-menu-item>
+    <div style="display: flex; flex-direction: row" >
+      <div class="menuItems" [ngStyle]="{'background-color':'red'}"></div>
+      <span>Paid</span>
+    </div>
+  </button>
+
+  <button mat-menu-item disabled>
+    <mat-icon>delete_outline</mat-icon>
+    <span>Delete</span>
+  </button>
+</mat-menu>
