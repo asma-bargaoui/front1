@@ -1,0 +1,152 @@
+<div style="display: flex; justify-content: flex-start; flex-direction: row; margin-top: 5rem; margin-left: 2rem; margin-bottom: 3rem">
+   
+  <button mat-raised-button class="addBtnColor" (click)="openDialog()">+ nouvelle  Application</button>
+</div>
+
+<p-scrollPanel [style]="{ width: '100%', height: '50%' }">
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-around; margin-bottom: 100px">
+
+    <div *ngFor="let app of applications" class="candidateList">
+
+      <div style="display: flex; flex-direction: row; justify-content: flex-start; width: 40vw">
+        <div style="margin-left: 2rem; margin-top: 1rem; width: 12rem">
+          <div style="display: flex; flex-direction: row; justify-content: flex-start; margin-bottom: .8rem">
+            
+            <div style="display: flex; flex-direction: column; justify-content: center; width: 20rem">
+            </div>
+
+          </div>
+          <div style="color: #3a6aa1; font-weight: bolder; width: 20vw; padding-right: 1rem">{{app.code}}</div>
+          <div style="color: #4e5652; width: 20vw; padding-right: 1rem; margin-top: 12px;">{{app.libelle}}</div>
+          <div style="display: flex; justify-content: space-between; align-items: flex-end;height: 4rem; ">
+            <div style="display: flex; justify-content: flex-start;">
+<button (click)="deleteApp()" pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger " style="font-size: 12rem;  margin-top: .7rem;"></button>
+
+            </div>
+              <p style="margin-right: -5rem;">{{app.prix}} <span style="font-weight: bolder;">TND</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</p-scrollPanel>
+
+<p-dialog header="Nouvelle Application" [(visible)]="visible"  [modal]="true" [style]="{width: '40vw', height: '60vh'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+  <form [formGroup]="applicationForm" >
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <div style="display: flex; flex-direction: column;align-items: center;">
+        <label class="labelMarge">Code de l'application</label>
+        <input formControlName="code" style="width: 22rem;" type="text" pInputText>
+      </div><br>
+      <div style="display: flex; flex-direction: column;align-items: center;">
+          <label class="labelMarge">Libellé de l'application</label>
+          <input formControlName="libelle" style="width: 22rem;" type="text" pInputText>
+      </div><br>
+      <div style="display: flex; flex-direction: column;align-items: center;">
+          <label class="labelMarge">Prix de l'application</label>
+          <input formControlName="prix" style="width: 22rem;" type="text" pInputText>
+      </div>
+      
+    </div>
+    <br>
+    
+    <br>
+    
+
+  </form>
+  <ng-template pTemplate="footer">
+    <button pButton icon="pi pi-times" (click)="visible = false"  class="p-button-danger" label="Cancel"></button>
+    <button pButton icon="pi pi-check" (click)="submitApplication()" label="Submit" ></button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog header="Update Application" [(visible)]="update"  [modal]="true" [style]="{width: '40vw', height: '60vh'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+  <form [formGroup]="applicationUpdateForm" >
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <div style="display: flex; flex-direction: column;align-items: center;">
+        <label class="labelMarge">Code de l'application</label>
+        <input formControlName="code" style="width: 22rem;" type="text" pInputText>
+      </div><br>
+      <div style="display: flex; flex-direction: column;align-items: center;">
+          <label class="labelMarge">Libellé de l'application</label>
+          <input formControlName="libelle" style="width: 22rem;" type="text" pInputText>
+      </div><br>
+      <div style="display: flex; flex-direction: column;align-items: center;">
+          <label class="labelMarge">Prix de l'application</label>
+          <input formControlName="prix" style="width: 22rem;" type="text" pInputText>
+      </div>
+      
+    </div>
+    <br>
+    <br>
+  </form>
+  <ng-template pTemplate="footer">
+    <button pButton icon="pi pi-times" (click)="visible = false"  class="p-button-danger" label="Cancel"></button>
+    <button pButton icon="pi pi-check" (click)="submitApplication()" label="Submit" ></button>
+  </ng-template>
+</p-dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--mena tabda -->
+
+<div class="container">
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1" >Code Application</div>
+      <div class="col col-2" style="text-align: center;">Libellé de l'application</div>
+      <div class="col col-3" >Prix de l'application</div>
+      <div class="col col-2" style="text-align: center; margin-top: -1rem;">
+      </div>
+      <div class="col col-2" style="text-align: center; margin-top: -1rem;">
+      </div>
+
+    </li>
+    <li class="table-row" *ngFor="let app of applications">
+      <div class="col col-1" data-label="Job Id">{{app.code}}</div>
+      <div class="col col-2" style="text-align: center;" data-label="Customer Name">{{app.libelle}}</div>
+      <div class="col col-3" style="text-align: center;" data-label="Amount">{{app.prix}}</div>
+      
+      <div class="col col-2" style="text-align: center;margin-top: -1rem;" data-label="Payment Status">
+        <button (click)="deleteApp()" pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger " style="font-size: 12rem;  margin-top: .7rem;"></button>
+      </div>
+     
+    </li>
+    
+  </ul>
+</div>
+
+
+
+  <p-dialog header="Update Structure" [(visible)]="update"  [modal]="true" [style]="{width: '40vw', height: '75vh'}" [baseZIndex]="10000"
+            [draggable]="false" [resizable]="false">
+      <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div style="display: flex; flex-direction: column;align-items: center;">
+          <label class="labelMarge">Code du structure</label>
+          <input formControlName="code" style="width: 22rem;" type="text" pInputText>
+        </div><br>
+        <div style="display: flex; flex-direction: column;align-items: center;">
+            <label class="labelMarge">Libellé du structure</label>
+            <input formControlName="libelle" style="width: 22rem;" type="text" pInputText>
+        </div><br>
+        
+       
+      <br>
+      
+      <br>

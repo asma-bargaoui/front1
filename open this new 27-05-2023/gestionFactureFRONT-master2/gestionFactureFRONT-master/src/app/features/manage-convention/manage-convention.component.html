@@ -1,0 +1,63 @@
+<div class="container">
+  <h2 class="title">Create New Convention</h2>
+
+  <form [formGroup]="conventionForm" class="form">
+    <mat-horizontal-stepper linear>
+      <mat-step>
+        <ng-template matStepLabel>Step 1</ng-template>
+        <div class="form-field">
+          <label>Structure</label>
+          <select formControlName="structure">
+            <option *ngFor="let structure of structureList" [ngValue]="structure.code">{{ structure.libelle }}</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Application</label>
+          <select formControlName="application">
+            <option *ngFor="let application of applicationList" [ngValue]="application.code">{{ application.libelle }}</option>
+          </select>
+        </div>
+        <div class="button-container">
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Step 2</ng-template>
+        <div class="form-field">
+          <label>Durée du convention</label>
+          <input formControlName="conventionDuration" type="number" pInputText>
+        </div>
+        <div class="form-field">
+          <label>Nbr_reel</label>
+          <input formControlName="nbr_reel" type="number" pInputText>
+        </div>
+        <div class="form-field">
+          <label>Nbr_Min</label>
+          <input formControlName="nbr_Min" type="number" pInputText>
+        </div>
+        <div class="form-field">
+          <label>Nbr_Max</label>
+          <input formControlName="nbr_Max" type="number" pInputText>
+        </div>
+        <div class="button-container">
+          <button mat-button matStepperPrevious>Previous</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Step 3</ng-template>
+        <div class="form-field">
+          <label>Date de signature</label>
+          <p-calendar [required]="true" formControlName="dateSignature"></p-calendar>
+        </div>
+        <div class="button-container">
+        <button mat-button matStepperPrevious>Previous</button>
+        <button class="submit-button" pButton (click)="submitConvention()" icon="pi pi-check" label="Submit"></button>
+      </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  
+    
+  
+  </form>
+</div>

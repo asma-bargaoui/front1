@@ -1,0 +1,152 @@
+
+
+.addBtnColor{
+    background-image: linear-gradient(
+        290deg,
+        hsl(197deg 93% 24%) 0%,
+        hsl(206deg 34% 48%) 55%,
+        hsl(213deg 43% 67%) 100%
+    );
+    color: white;
+    border-radius: 10px;
+    font-weight: 5;
+    margin-right: 1.2rem;
+  }
+  
+  .filterBlock{
+    width: 80vw;
+    height: 25vh;
+    margin-top: 2rem;
+    border-radius: 12px;
+    box-shadow: 5px 4px 22px 0px rgba(194, 193, 193, 0.75);
+  
+  }
+  
+  .headClass{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  
+  ::ng-deep .mat-form-field-outline-start {
+    border-radius: 20px 0 0 20px !important;
+    min-width: 20px !important;
+  }
+  
+  ::ng-deep .mat-form-field-outline-end {
+    border-radius: 0 20px 20px 0 !important;
+  }
+  .filterClass{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+  }
+  
+  .marginItemsListe{
+    margin-top: 2.2rem;
+    margin-left: 4rem;
+  }
+  .noBorder{
+    margin-top: 1.3rem;
+    margin-left: 5rem;
+  }
+  
+  ::ng-deep {
+    .mat-form-field-appearance-outline.noBorder .mat-form-field-outline {
+      color: transparent;
+    }
+  }
+  
+  .candidateList{
+  
+    margin-top: 2rem;
+    margin-left: -5rem;
+    margin-right: 2rem;
+    width: 20vw;
+    height: 10rem;
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 12px;
+    box-shadow: 5px 4px 22px 0px rgba(194, 193, 193, 0.75);
+    position: relative;
+  }
+  .example-viewport {
+    height: 200vh;
+    width: 100vw;
+  }
+  
+  .custom-marker {
+    display: flex;
+    width: 2rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  
+  ::ng-deep {
+    .p-timeline-event-content,
+    .p-timeline-event-opposite {
+      line-height: 1;
+    }
+  }
+  
+  @media screen and (max-width: 960px) {
+    ::ng-deep {
+      .customized-timeline {
+        .p-timeline-event:nth-child(even) {
+          flex-direction: row !important;
+  
+          .p-timeline-event-content {
+            text-align: left !important;
+          }
+        }
+  
+        .p-timeline-event-opposite {
+          flex: 0;
+        }
+  
+        .p-card {
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+  .customShape2{
+    height: 2.3rem;
+    width: 2.3rem;
+    border-radius: 100% 0% 100% 0% / 100% 100% 0% 0%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    box-shadow: -51px 33px 73px -4px rgba(0,0,0,0.21);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .customShape2:hover{
+    cursor: pointer;
+    box-shadow: -51px 79px 118px 8px rgba(0,0,0,0.31);
+  }
+  .menuItems{
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    margin-top: .8rem;
+    margin-right: .4rem
+  }
+  .warningImg{
+    width: 2.4rem;
+  }
+  .warningImg2{
+    width: 2.7rem;
+  }
+  
+  .labelMarge{
+    margin-bottom: .6rem;
+  }
+  .mar{
+    margin-left: .5rem;
+  }

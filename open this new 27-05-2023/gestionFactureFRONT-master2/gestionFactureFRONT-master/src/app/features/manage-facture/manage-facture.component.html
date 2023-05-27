@@ -1,0 +1,54 @@
+
+
+<div class="container">
+
+  <ngx-datatable class="material" [headerHeight]="50" [rows]="items" [limit]="rowLimit" [footerHeight]="50" [externalPaging]="true"
+  [count]="totalItems" [offset]="offset" (page)="onPageChange($event)">
+  
+    <ngx-datatable-column prop="structureLibelle" name="Structure"></ngx-datatable-column>
+    <ngx-datatable-column prop="status" name="Status"></ngx-datatable-column>
+    <ngx-datatable-column prop="dueDatefct" name="Date d'echeance fct"></ngx-datatable-column>
+    <ngx-datatable-column prop="amount" name="Montant"></ngx-datatable-column>
+    <ngx-datatable-column prop="period" name="Periode"></ngx-datatable-column>
+  
+</ngx-datatable>
+<div class="row-limit-container">
+  <label for="row-limit">Rows per page:</label>
+  <select id="row-limit" [(ngModel)]="rowLimit" (change)="onRowLimitChange()">
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+  </select>
+</div>
+<pagination-controls (pageChange)="onPageChange($event)" [maxSize]="1000" [directionLinks]="true" [responsive]="true"></pagination-controls>
+
+</div>
+
+
+
+
+
+<!--<div class="container">
+  <table class="responsive-table" st-table="allFacture">
+    <thead>
+      <tr class="table-header">
+        <th class="col col-1" st-sort="id">ID</th>
+        <th class="col col-3" st-sort="convention">Convention</th>
+        <th class="col col-3" st-sort="structure">Structure</th>
+        <th class="col col-3" st-sort="dueDatefct">Date d'echeance fct</th>
+        <th class="col col-3" st-sort="amount">Montant</th>
+        <th class="col col-3" st-sort="period">Periode</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="smart-table-row" *ngFor="let fact of allFacture">
+        <td class="col col-1">{{ fact.id }}</td>
+        <td class="col col-3" style="text-align: center;">{{ fact.convention }}</td>
+        <td class="col col-3" style="text-align: center;">{{ fact.structure }}</td>
+        <td class="col col-3" style="text-align: center;">{{ fact.dueDatefct }}</td>
+        <td class="col col-3" style="text-align: center;">{{ fact.amount }}</td>
+        <td class="col col-3" style="text-align: center;">{{ fact.period }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>-->
